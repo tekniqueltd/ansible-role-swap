@@ -1,22 +1,27 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Creates and mounts a swap file to hosts.
+
+Supported Operating Systems
+---------------------------
+
+* Debian (Stretch)
+* Ubuntu (Bionic)
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+* Ansible 2.8+ (on execution host)
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Two variables defined in defaults/main.yml file are
+* swap_size_mb
+* swap_file
 
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Please ensure that the the swap_size_mb variable is defined with only numeric characters and the size is read in megabytes. So to create a 512Mb of swap file, please declare the variable swap_size_mb as 512. The variable swap_file is absolute path of the swap file to be created. So if you want to create a swapfile named **extraswap** inside **/** directory, the variable should be defined as **/extraswap**
 
 Example Playbook
 ----------------
@@ -25,14 +30,19 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - ansible-role-swap
 
-License
--------
+Add as a submodule to your playbook repo
+----------------------------------------
 
-BSD
+    git submodule add https://github.com/tekniqueltd/ansible-role-swap roles/swap
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Teknique DevOps Team
+
+Credits
+-------
+
+Forked from [devster31/swap.yml](https://gist.github.com/devster31/74e48cc1c8e73c637bc7)
