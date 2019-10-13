@@ -1,0 +1,5 @@
+---
+# defaults file for ansible_role_swap
+swap_size_mb: 512
+swap_file: /extraswap
+swap_vm_swappiness: 60
